@@ -1,10 +1,21 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  import {ref, computed} from "vue";
+
+  const radiusInit = Math.round(Math.random() * 100);
+  const PI = ref(3.14);
+  const radius = ref(radiusInit);
+  const area = computed(
+    (): number => radius.value * radius.value * PI.value
+  );
+  
+  setInterval(() => {
+    radius.value = Math.round(Math.random() * 10);
+  }, 3000);
+</script>
 
 <template>
-  <h1>You did it!</h1>
   <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
+    半径：{{ radius }} 円周率：{{ PI }} 面積{{ area }}
   </p>
 </template>
 
