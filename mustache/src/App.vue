@@ -5,7 +5,7 @@ const name=ref("あいう　えおい");
 </script>
 
 <template>
-  <h1>Hello!{{ name }}さん！</h1>
+  <h1>Hello!{{ name }}さん！！</h1>
 </template>
 
 <style scoped></style>
