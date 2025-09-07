@@ -1,11 +1,26 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const now = new Date();
+const nowStr = now.toLocaleTimeString();
+let timeStr = nowStr;
+const timeStrRef = ref(nowStr);
+
+function changeTime(): void{
+  const newTime=new Date();
+  const newTimeStr = newTime.toLocaleTimeString();
+  //timeStr = newTimeStr;
+  timeStrRef.value = newTimeStr;
+}
+
+setInterval(() => {
+  changeTime();
+}, 1000);
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <p>現在時刻：{{ timeStr }}</p>
+  <p>現在時刻(ref):{{ timeStrRef }}</p>
 </template>
 
 <style scoped></style>
