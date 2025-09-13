@@ -2,9 +2,13 @@
 import { ref } from 'vue';
 
 const url = ref("https://vuejs.org");
-const isSendButtonDisabled = ref(true);
-const widthOrHeight = ref("height");
-const widthOrHeightValue = ref(100);
+
+const imgAttributes = ref({
+  src: "/images/logo.svg",
+  alt: "Vueのロゴ",
+  width: 75,
+  height: 75
+})
 </script>
 
 <template>
@@ -13,7 +17,10 @@ const widthOrHeightValue = ref(100);
   <p><a v-bind:href="url + '/guide/introduction.html'" target="_blank">Vue.js Guide</a></p>
   <p><button type="button" v-bind:disabled="isSendButtonDisabled">送信</button></p>
 
-  <p><img alt="VueLogo" src="./assets/logo.svg" v-bind:[widthOrHeight]="widthOrHeightValue"></p>
+  <p><img v-bind="imgAttributes"></img></p>
+  <p><img v-bind="imgAttributes" title="logo_title!"></img></p>
+  <p><img v-bind="imgAttributes" alt="logo_alt!"></img></p>
+  <p><img alt="VueLogo" src="./assets/logo.svg" ></p>
 
 </template>
 
