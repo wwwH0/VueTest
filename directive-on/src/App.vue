@@ -1,0 +1,18 @@
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const randValue = ref("not yet!");
+const onButtonClick = (): void => {
+  const rand = Math.round(Math.random() * 10);
+  randValue.value = String(rand);
+};
+</script>
+
+<template>
+  <section>
+    <button v-on:click="onButtonClick">Click!!</button>
+    <p>Result of the click : {{ randValue }}</p>
+  </section>
+</template>
+
+<style scoped></style>
