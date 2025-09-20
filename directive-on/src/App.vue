@@ -23,6 +23,13 @@ const onPClick = (bgColor: string): void => {
     pBgColor.value = "white";
   }
 }
+
+const pMsg = ref("Click here!");
+const pBgColorEvent = ref("white");
+const onPClickWithEvent = (bgcolor: string, event: MouseEvent): void => {
+  pBgColorEvent.value = bgcolor;
+  pMsg.value = event.timeStamp.toString();
+}
 </script>
 
 <template>
@@ -37,6 +44,11 @@ const onPClick = (bgColor: string): void => {
   <section>
     <p v-on:click="onPClick('red')" v-bind:style="{backgroundColor: pBgColor}">
       Change the BgColor when you click.
+    </p>
+  </section>
+  <section>
+    <p v-on:click="onPClickWithEvent('green', $event)" v-bind:style="{backgroundColor: pBgColorEvent}">
+      {{ pMsg }}
     </p>
   </section>
 </template>
