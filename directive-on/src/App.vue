@@ -13,6 +13,16 @@ const onImgMousemove = (event: MouseEvent): void => {
   mousePointerX.value = event.offsetX;
   mousePointerY.value = event.offsetY;
 }
+
+const pBgColor = ref("white");
+const onPClick = (bgColor: string): void => {
+  if (pBgColor.value === "white"){
+    pBgColor.value = bgColor;
+  }
+  else {
+    pBgColor.value = "white";
+  }
+}
 </script>
 
 <template>
@@ -23,6 +33,11 @@ const onImgMousemove = (event: MouseEvent): void => {
   <section>
     <img src="./assets/logo.svg" alt="Vue logo" width="200" v-on:mousemove="onImgMousemove"></img>
     <p>location of pointer: x={{ mousePointerX }} y={{ mousePointerY }}</p>
+  </section>
+  <section>
+    <p v-on:click="onPClick('red')" v-bind:style="{backgroundColor: pBgColor}">
+      Change the BgColor when you click.
+    </p>
   </section>
 </template>
 
