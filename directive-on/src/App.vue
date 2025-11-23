@@ -12,7 +12,7 @@ const mousePointerY = ref(0);
 const onImgMousemove = (event: MouseEvent): void => {
   mousePointerX.value = event.offsetX;
   mousePointerY.value = event.offsetY;
-}
+};
 
 const pBgColor = ref("white");
 const onPClick = (bgColor: string): void => {
@@ -22,14 +22,19 @@ const onPClick = (bgColor: string): void => {
   else {
     pBgColor.value = "white";
   }
-}
+};
 
 const pMsg = ref("Click here!");
 const pBgColorEvent = ref("white");
 const onPClickWithEvent = (bgcolor: string, event: MouseEvent): void => {
   pBgColorEvent.value = bgcolor;
   pMsg.value = event.timeStamp.toString();
-}
+};
+
+const msg = ref("未送信");
+const onFormSubmit = (): void => {
+  msg.value = "送信されました";
+};
 </script>
 
 <template>
@@ -51,6 +56,11 @@ const onPClickWithEvent = (bgcolor: string, event: MouseEvent): void => {
       {{ pMsg }}
     </p>
   </section>
+  <form action="#" v-on:submit.prevent="onFormSubmit">
+    <input type="text" required></input>
+    <button type="submit">Submit</button>
+  </form>
+  <p>{{ msg }}</p>
 </template>
 
 <style scoped></style>
