@@ -35,6 +35,18 @@ const msg = ref("未送信");
 const onFormSubmit = (): void => {
   msg.value = "送信されました";
 };
+
+//4.2.7
+const msg4_2_7= ref("not yet!");
+const onEnterKey = (): void => {
+  msg4_2_7.value = "Push Enter key";
+};
+const onRightButtonClick = (): void => {
+  msg4_2_7.value = "Right Click!!";
+};
+const onShiftClick = (): void => {
+  msg4_2_7.value = "Push Shift key";
+};
 </script>
 
 <template>
@@ -56,11 +68,18 @@ const onFormSubmit = (): void => {
       {{ pMsg }}
     </p>
   </section>
+  <p>4.2.6</p>
   <form action="#" v-on:submit.prevent="onFormSubmit">
     <input type="text" required></input>
     <button type="submit">Submit</button>
   </form>
   <p>{{ msg }}</p>
+  <br>
+  <p>4.2.7</p>
+  <p>{{ msg4_2_7 }}</p>
+  <input type="text" v-on:keydown.enter="onEnterKey"><br>
+  <button v-on:click.right="onRightButtonClick">Right Click</button><br>
+  <button v-on:click.shift="onShiftClick">Click with Shift</button>
 </template>
 
 <style scoped></style>
