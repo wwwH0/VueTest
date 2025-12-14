@@ -40,7 +40,7 @@ cocktailListInit3.set(4412, "ブルーハワイ");
 cocktailListInit3.set(6792, "ニューヨーク");
 const cocktailList3 = ref(cocktailListInit3);
 
-//6.2.4,6.2.5
+//6.2.4
 const whiteLadyInit: {
   id: number;
   name: string;
@@ -54,12 +54,12 @@ const whiteLadyInit: {
 };
 const whiteLady = ref(whiteLadyInit);
 
-const cocktailDataListInit: Cocktail[] = [
-  {id: 2345, name: "ホワイトレディ", price: 1200},
-  {id: 4412, name: "ブルーハワイ", price: 1500},
-  {id: 6792, name: "ニューヨーク", price: 1100},
-  {id: 8429, name: "マティーニ", price: 1500}
-];
+//6.2.5,6.2.6
+const cocktailDataListInit = new Map<number, Cocktail>();
+cocktailDataListInit.set(2345, {id: 2345, name: "ホワイトレディ", price: 1200});
+cocktailDataListInit.set(4412, {id: 4412, name: "ブルーハワイ", price: 1500});
+cocktailDataListInit.set(6792, {id: 6792, name: "ニューヨーク", price: 1100});
+cocktailDataListInit.set(8429, {id: 8429, name: "マティーニ", price: 1500});
 const cocktailDataList = ref(cocktailDataListInit);
 
 interface Cocktail {
@@ -168,12 +168,21 @@ interface Cocktail {
     </template>
   </dl>
   <br>
-  <p>6.2.5</p>
+  <p>6.2.5,6.2.6</p>
   <ul>
     <li
-      v-for="cocktailItem in cocktailDataList"
-      v-bind:key="cocktailItem.id">
+      v-for="[id, cocktailItem] in cocktailDataList"
+      v-bind:key="id">
       {{ cocktailItem.name }}の値段は{{ cocktailItem.price }}円
+    </li>
+  </ul>
+  <br>
+  <p>6.2.7</p>
+  <ul>
+    <li
+      v-for="r in 5"
+      v-bind:key="r">
+      半径{{ r }}の円の円周: {{ 2 * r * 3.14 }}
     </li>
   </ul>
 </template>
