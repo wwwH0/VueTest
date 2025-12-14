@@ -33,6 +33,41 @@ const cocktailListInit2: {[key: number]: string;} = {
 };
 const cocktailList2 = ref(cocktailListInit2);
 
+//6.2.3
+const cocktailListInit3 = new Map<number, string>();
+cocktailListInit3.set(2345, "ホワイトレディ");
+cocktailListInit3.set(4412, "ブルーハワイ");
+cocktailListInit3.set(6792, "ニューヨーク");
+const cocktailList3 = ref(cocktailListInit3);
+
+//6.2.4,6.2.5
+const whiteLadyInit: {
+  id: number;
+  name: string;
+  price: number;
+  recipe: string;
+} = {
+  id: 2345,
+  name: "ホワイトレディ",
+  price: 1200,
+  recipe: "ホワイトレディのレシピ～～～～～"
+};
+const whiteLady = ref(whiteLadyInit);
+
+const cocktailDataListInit: Cocktail[] = [
+  {id: 2345, name: "ホワイトレディ", price: 1200},
+  {id: 4412, name: "ブルーハワイ", price: 1500},
+  {id: 6792, name: "ニューヨーク", price: 1100},
+  {id: 8429, name: "マティーニ", price: 1500}
+];
+const cocktailDataList = ref(cocktailDataListInit);
+
+interface Cocktail {
+  id: number;
+  name: string;
+  price: number;
+}
+
 </script>
 
 <template>
@@ -111,6 +146,34 @@ const cocktailList2 = ref(cocktailListInit2);
       v-for="(cocktailName, id, index) in cocktailList2"
       v-bind:key="'cocktailList2WithIndex' + id">
       {{ index + 1 }}:IDが{{ id }}のカクテルは{{ cocktailName }}
+    </li>
+  </ul>
+  <br>
+  <p>6.2.3</p>
+  <ul>
+    <li
+      v-for="[id, cocktailName] in cocktailList3"
+      v-bind:key="id">
+      IDが{{ id }}のカクテルは{{ cocktailName }}
+    </li>
+  </ul>
+  <br>
+  <p>6.2.4</p>
+  <dl>
+    <template
+      v-for="(value, key) in whiteLady"
+      v-bind:key="key">
+      <dt>{{ key }}</dt>
+      <dd>{{ value }}</dd>
+    </template>
+  </dl>
+  <br>
+  <p>6.2.5</p>
+  <ul>
+    <li
+      v-for="cocktailItem in cocktailDataList"
+      v-bind:key="cocktailItem.id">
+      {{ cocktailItem.name }}の値段は{{ cocktailItem.price }}円
     </li>
   </ul>
 </template>
