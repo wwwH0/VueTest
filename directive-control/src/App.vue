@@ -20,6 +20,19 @@ const randomNumber = computed (
     return Math.round(Math.random() * 100);
   }
 );
+
+//6.2.1
+const cocktailListInit: string[] = ["ホワイトレディ","ブルーハワイ","ニューヨーク"];
+const cocktailList = ref(cocktailListInit);
+
+//6.2.2
+const cocktailListInit2: {[key: number]: string;} = {
+  2345: "ホワイトレディ",
+  4412: "ブルーハワイ",
+  6792: "ニューヨーク"
+};
+const cocktailList2 = ref(cocktailListInit2);
+
 </script>
 
 <template>
@@ -54,6 +67,52 @@ const randomNumber = computed (
     <span v-else-if="randomNumber >= 60">可です。</span>
     <span v-else>不可です。</span>
   </p>
+  <br>
+  <p>6.1.4</p>
+  <section>
+    "v-if"
+    <p v-if="showOrNot">
+      合致
+    </p>
+  </section>
+  <section>
+    "v-show"
+    <p v-show="showOrNot">
+      合致
+    </p>
+  </section>
+  <br>
+  <p>6.2.1</p>
+  <ul>
+    <li
+      v-for="cocktailName in cocktailList"
+      v-bind:key="cocktailName">
+      {{ cocktailName }}
+    </li>
+  </ul>
+  <ul>
+    <li
+      v-for="(cocktailName, index) in cocktailList"
+      v-bind:key="cocktailName">
+      {{ cocktailName }}(index:{{ index }})
+    </li>
+  </ul>
+  <br>
+  <p>6.2.2</p>
+  <ul>
+    <li
+      v-for="(cocktailName, id) in cocktailList2"
+      v-bind:key="'cocktailList2' + id">
+      IDが{{ id }}のカクテルは{{ cocktailName }}
+    </li>
+  </ul>
+  <ul>
+    <li
+      v-for="(cocktailName, id, index) in cocktailList2"
+      v-bind:key="'cocktailList2WithIndex' + id">
+      {{ index + 1 }}:IDが{{ id }}のカクテルは{{ cocktailName }}
+    </li>
+  </ul>
 </template>
 
 <style scoped></style>
