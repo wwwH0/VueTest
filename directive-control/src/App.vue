@@ -68,6 +68,40 @@ interface Cocktail {
   price: number;
 }
 
+//6.3.1
+const cocktailDataListInit2: Cocktail[] = [
+  {id: 2345, name: "ホワイトレディ", price: 1200},
+  {id: 4412, name: "ブルーハワイ", price: 1500},
+  {id: 6792, name: "ニューヨーク", price: 1100},
+  {id: 8429, name: "マティーニ", price: 1500}
+];
+const cocktailDataList2 = ref(cocktailDataListInit2);
+const cocktail1500 = computed(
+  (): Cocktail[] => {
+    const newlist = cocktailDataList2.value.filter(
+      (cocktailItem: Cocktail): boolean => {
+        return cocktailItem.price == 1500;
+      }
+    );
+    return newlist;
+  } 
+);
+
+//6.3.2
+const cocktailListInit4: string[] = ["ホワイトレディ","ブルーハワイ","ニューヨーク"];
+const cocktailList4 = ref(cocktailListInit4);
+const changeCocktailList = (): void => {
+  cocktailList4.value = ["バラライカ", "XYZ", "マンハッタン"];
+};
+
+const addCocktailList = (): void => {
+  cocktailList4.value.push("ブルームーン");
+};
+
+const deleteFromCocktailList = (): void => {
+  cocktailList4.value.pop();
+};
+
 </script>
 
 <template>
@@ -185,6 +219,39 @@ interface Cocktail {
       半径{{ r }}の円の円周: {{ 2 * r * 3.14 }}
     </li>
   </ul>
+  <br>
+  <p>6.3.1</p>
+  <section>
+    値段が1500円のカクテルリスト
+    <ul>
+      <li
+        v-for="cocktailItem in cocktail1500"
+        v-bind:key="'cocktail1500' + cocktailItem.id">
+        {{ cocktailItem.name }}の値段は{{ cocktailItem.price }}円
+      </li>      
+    </ul>
+  </section>
+  <br>
+  <p>6.3.2</p>
+  <ul>
+    <li
+      v-for="(cocktailName, index) in cocktailList4"
+      v-bind:key="cocktailName">
+      {{ cocktailName }}(index{{ index }})
+    </li>
+  </ul>
+  <p>
+    CocktailListを
+    <button v-on:click="changeCocktailList">変更</button>
+  </p>
+  <p>
+    CocktailListの末尾に「ブルームーン」を
+    <button v-on:click="addCocktailList">追加</button>
+  </p>
+  <p>
+    CocktailListから末尾の要素を
+    <button v-on:click="deleteFromCocktailList">削除</button>
+  </p>
 </template>
 
 <style scoped></style>
