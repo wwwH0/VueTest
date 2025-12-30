@@ -1,15 +1,18 @@
 <script setup lang="ts">
-  //7.1.3
+  //7.1.5
   import {ref, watch} from "vue";
 
   const cocktailNo = ref(1);
   const priceMsg = ref("");
 
   watch(cocktailNo,
-    (): void => {
-      priceMsg.value = getCocktailInfo(cocktailNo.value);
-    },
-    {immediate: true}
+    (newVal: number, oldVal: number): void => {
+      let msg = "前のカクテル: ";
+      msg += getCocktailInfo(oldVal);
+      msg += "現在のカクテル: " ;
+      msg += getCocktailInfo(newVal);
+      priceMsg.value = msg;
+    }  
   );
 
 //cocktailNoを1秒ごとに1〜4の乱数を使って変更。
