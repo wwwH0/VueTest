@@ -8,7 +8,8 @@
   watch(cocktailNo,
     (): void => {
       priceMsg.value = getCocktailInfo(cocktailNo.value);
-    }
+    },
+    {immediate: true}
   );
 
 //cocktailNoを1秒ごとに1〜4の乱数を使って変更。
