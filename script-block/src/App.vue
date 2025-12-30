@@ -1,11 +1,11 @@
 <script setup lang="ts">
-  //7.2
-  import {ref, watch, watchEffect} from "vue";
+  //7.1.3
+  import {ref, watch} from "vue";
 
   const cocktailNo = ref(1);
   const priceMsg = ref("");
 
-  watchEffect(
+  watch(cocktailNo,
     (): void => {
       priceMsg.value = getCocktailInfo(cocktailNo.value);
     }
